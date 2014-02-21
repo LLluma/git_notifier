@@ -62,7 +62,7 @@ class Popup(wx.Frame):
         wx.Frame.__init__(self, None, -1, style=wx.NO_BORDER | wx.FRAME_NO_TASKBAR)
         self.padding = 12 # padding between edge, icon and text
         self.popped = 3 # the time popup was opened
-        self.delay = 4 # time to leave the popup opened
+        self.delay = 10 # time to leave the popup opened
         self.width = 400
 
         # platform specific hacks
@@ -133,10 +133,8 @@ class Popup(wx.Frame):
         self.popup.Show()
         for i in range(1, popupSize.height + 1):
             self.popup.Move((screen.width - popupSize.width, screen.height - i))
-            self.popup.SetTransparent(int(float(240) / popupSize.height * i))
             self.popup.Update()
             self.popup.Refresh()
-            time.sleep(0.01)
         self.popped = time.time()
 
     def hide(self):
