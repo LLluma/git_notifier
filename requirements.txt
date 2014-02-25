@@ -1,0 +1,2 @@
+GitPython>=0.1.7
+wxPython>=2.8.12

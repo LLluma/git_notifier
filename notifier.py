@@ -1,12 +1,14 @@
 #!/usr/bin/env python
-
+import ConfigParser
 import wx
 import time
 from git_status import check_status
 
-GIT_PATHS = '/home/shuma/erp_modules/kt/,/home/shuma/erp_modules/wr/'
-REPEAT_EVERY = 20 # In minutes
+config = ConfigParser.ConfigParser()
+config.readfp(open('config.cfg'))
 
+REPOSITORY_PATH = config.get('main', 'repository_path')
+REPEAT_EVERY = config.getfloat('main', 'repeat_every')
 
 class Icon(wx.TaskBarIcon):
     """notifier's taskbar icon"""
@@ -170,7 +172,6 @@ class Notifier(wx.App):
         # menu handlers
         menu = [
             ("Show again", self.open_popup),
-            ("Settings", self.settings),
             ("Exit", self.exit),
         ]
 
@@ -191,7 +192,7 @@ class Notifier(wx.App):
         wrap_text = lambda text, wrap_char: "%s\n%s\n\n" % (text, wrap_char * len(text))
         status = "off"
         message_str = ''
-        for git_repo_path in GIT_PATHS.split(','):
+        for git_repo_path in REPOSITORY_PATH.split(','):
             result = check_status(git_repo_path)
             if result:
                 message_str += wrap_text(git_repo_path, '=')
@@ -203,12 +204,6 @@ class Notifier(wx.App):
         if message_str:
             self.popup.show(message_str)
         self.icon.setStatus(status)
-
-    def again(self):
-        print "again"
-
-    def settings(self):
-        print "settings"
 
     def exit(self):
 
