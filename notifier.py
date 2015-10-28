@@ -206,7 +206,6 @@ class Notifier(wx.App):
         self.icon.setStatus(status)
 
     def exit(self):
-
         # close objects and end
         self.icon.close()
         self.Exit()
