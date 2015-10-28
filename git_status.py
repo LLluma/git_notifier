@@ -25,13 +25,13 @@ def get_repo_info(root_dir, module_dir):
     unpushed = repoCmd.execute(['git', 'log', '--branches',
                                 '--not', '--remotes', '--simplify-by-decoration',
                                 '--decorate', '--oneline'])
-    dirty = repoCmd.execute(['git', 'status', '--porcelain', ])
-    if unpushed or dirty:
+    dirty_module = repoCmd.execute(['git', 'status', '--porcelain', ])
+    if unpushed or dirty_module:
         result[module_dir] = {}
         if unpushed:
             result[module_dir]['unpushed'] = unpushed
-        if dirty:
-            result[module_dir]['dirty'] = dirty
+        if dirty_module:
+            result[module_dir]['dirty_module'] = dirty_module
     return result
 
 if __name__ == '__main__':
