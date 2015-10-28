@@ -35,7 +35,7 @@ def get_repo_info(root_dir, module_dir):
     return result
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if sys.argv and len(sys.argv) < 2:
         root_dirs = [os.getcwd(), ]
     else:
         root_dirs = sys.argv[1:]
