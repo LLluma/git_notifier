@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import ConfigParser
 import wx
 import time
@@ -9,6 +10,7 @@ config.readfp(open('config.cfg'))
 
 REPOSITORY_PATH = config.get('main', 'repository_path')
 REPEAT_EVERY = config.getfloat('main', 'repeat_every')
+
 
 class Icon(wx.TaskBarIcon):
     """notifier's taskbar icon"""
