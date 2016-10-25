@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 import git
@@ -46,4 +48,5 @@ if __name__ == '__main__':
             print module
             for k, v in message.items():
                 print "\t%s\t%s" % (k, v)
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
