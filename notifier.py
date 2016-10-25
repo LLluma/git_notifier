@@ -62,9 +62,9 @@ class Popup(wx.Frame):
     def __init__(self):
 
         wx.Frame.__init__(self, None, -1, style=wx.NO_BORDER | wx.FRAME_NO_TASKBAR)
-        self.padding = 12 # padding between edge, icon and text
-        self.popped = 3 # the time popup was opened
-        self.delay = 10 # time to leave the popup opened
+        self.padding = 12  # padding between edge, icon and text
+        self.popped = 3  # the time popup was opened
+        self.delay = 10  # time to leave the popup opened
         self.width = 400
 
         # platform specific hacks
