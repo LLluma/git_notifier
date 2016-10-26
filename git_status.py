@@ -20,6 +20,7 @@ def check_status(root_dir):
             result[module_dir]['error'] = "Is not git repository"
     return result
 
+
 def get_repo_info(root_dir, module_dir):
     result = {}
     repo = git.Repo(os.path.join(root_dir, module_dir))
