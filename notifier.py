@@ -51,6 +51,9 @@ class Icon(wx.TaskBarIcon):
         """sets the icon status"""
 
         self.SetIcon(self.states[which])
+    
+    def run_method(method):
+        return locals()['%s' % method]()
 
     def close(self):
         """destroys the icon"""
