@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import ConfigParser
 import wx
+import os
 import time
 from git_status import check_status
 
@@ -198,6 +199,10 @@ class Notifier(wx.App):
         status = "off"
         message_str = ''
         for git_repo_path in REPOSITORY_PATH.split(','):
+            if not os.path.isdir(git_repo_path):
+                print("Directory doesn't exist, skipping: %s" % git_repo_path)
+                continue
+
             result = check_status(git_repo_path)
             if result:
                 message_str += wrap_text(git_repo_path, '=')
