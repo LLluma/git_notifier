@@ -11,4 +11,4 @@ Instalation
 
 * Usage
 
-    python notifier.py or run /.notifier
+    python main.py or run /.main.py
