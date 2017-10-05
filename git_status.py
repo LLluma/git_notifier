@@ -26,7 +26,8 @@ def get_repo_info(root_dir, module_dir):
     repo = git.Repo(os.path.join(root_dir, module_dir))
     repoCmd = git.cmd.Git(working_dir=repo.working_dir)
     unpushed = repoCmd.execute(['git', 'log', '--branches',
-                                '--not', '--remotes', '--simplify-by-decoration',
+                                '--not', '--remotes',
+                                '--simplify-by-decoration',
                                 '--decorate', '--oneline'])
     dirty_module = repoCmd.execute(['git', 'status', '--porcelain', ])
     if unpushed or dirty_module and module_dir:
