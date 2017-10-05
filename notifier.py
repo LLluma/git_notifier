@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import ConfigParser
 import wx
+import os
 import time
 from git_status import check_status
 
@@ -197,7 +198,14 @@ class Notifier(wx.App):
         wrap_text = lambda text, wrap_char: "%s\n%s\n\n" % (text, wrap_char * len(text))
         status = "off"
         message_str = ''
-        for git_repo_path in REPOSITORY_PATH.split(','):
+        def get_dirs(*dirs):
+            for repo in dirs:
+                if not os.path.isdir(repo):
+                    print("Directory doesn't exist, skipping: %s" % repo)
+                else:
+                    yield repo
+
+        for git_repo_path in get_dirs(*REPOSITORY_PATH.split(',')):
             result = check_status(git_repo_path)
             if result:
                 message_str += wrap_text(git_repo_path, '=')
@@ -208,6 +216,9 @@ class Notifier(wx.App):
                     status = "on"
         if message_str:
             self.popup.show(message_str)
+        else:
+            print("Nothing to monitor, waiting for at least one repo to be"
+                  " created: %s" % REPOSITORY_PATH)
         self.icon.setStatus(status)
 
     def exit(self):
