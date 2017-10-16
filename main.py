@@ -3,7 +3,6 @@
 import ConfigParser
 from wx_notifier import WxNotifier
 
-
 config = ConfigParser.ConfigParser()
 config.readfp(open('config.cfg'))
 
